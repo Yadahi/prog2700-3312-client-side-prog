@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="https://edube.org/uploads/media/default/0001/04/web-favicon.png"
+      type="image/png"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="world-explorer">
+      <h1 class="page-title">Discover Your World &#x1F30D;</h1>
+      <p class="intro-text">
+        Click the button to learn about the continent you're on and some famous
+        geographical features.
+      </p>
+      <img
+        src="https://edube.org/uploads/media/default/0001/04/continents.jpg"
+        usemap="#image-map"
+        alt="World Map"
+        class="map-image"
+      />
+      <map name="image-map" class="map-areas">
+        <area
+          alt="North America"
+          title="North America"
+          id="north-america"
+          coords="386,283,41,17"
+          shape="rect"
+          href="javascript:void(0);"
+          class="continent-area"
+        />
+        <area
+          alt="South America"
+          title="South America"
+          id="south-america"
+          coords="209,501,358,288"
+          shape="rect"
+          href="javascript:void(0);"
+          class="continent-area"
+        />
+        <area
+          alt="Europe"
+          title="Europe"
+          id="europe"
+          coords="391,68,505,217"
+          shape="rect"
+          href="javascript:void(0);"
+          class="continent-area"
+        />
+        <area
+          alt="Africa"
+          title="Africa"
+          id="africa"
+          coords="533,217,387,448"
+          shape="rect"
+          href="javascript:void(0);"
+          class="continent-area"
+        />
+        <area
+          alt="Asia"
+          title="Asia"
+          id="asia"
+          coords="893,153,506,1"
+          shape="rect"
+          href="javascript:void(0);"
+          class="continent-area"
+        />
+        <area
+          alt="Australia and Oceania"
+          title="Australia and Oceania"
+          id="australia-and-oceania"
+          coords="679,353,872,480"
+          shape="rect"
+          href="javascript:void(0);"
+          class="continent-area"
+        />
+      </map>
+      <button id="discoverLocation" class="cta-button">
+        Discover Location
+      </button>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
