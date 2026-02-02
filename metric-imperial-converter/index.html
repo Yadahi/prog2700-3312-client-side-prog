@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Metric Converter</title>
+  </head>
+  <body>
+    <main class="main-container">
+      <h1>Metric to Imperial Converter</h1>
+      <div class="form-container">
+        <form id="convert-from" class="convert-container">
+          <div class="form-group">
+            <label for="value-input">Value to Convert</label>
+            <input
+              type="number"
+              id="value-input"
+              placeholder="Enter a number"
+            />
+          </div>
+          <div class="form-group">
+            <label for="value-select">Conversion Type</label>
+            <select id="value-select">
+              <option value="" disabled selected>
+                Choose a conversion type
+              </option>
+              <option value="celsius">Celsius → Fahrenheit</option>
+              <option value="kilometers">Kilometers → Miles</option>
+              <option value="meter">Meters → Feet</option>
+              <option value="centimeters">Centimeters → Inches</option>
+              <option value="kilograms">Kilograms → Pounds</option>
+              <option value="liters">Liters → Gallons</option>
+              <option value="grams">Grams → Ounces</option>
+            </select>
+          </div>
+          <button type="submit">Convert</button>
+        </form>
+        <div class="result-container" id="result"></div>
+      </div>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
