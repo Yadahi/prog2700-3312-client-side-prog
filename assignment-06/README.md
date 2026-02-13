@@ -1,3 +1,7 @@
+Viliam Vateha
+
+This program tracks and analyzes a student’s weekly expenses. It displays all expenses, adds tax to each item, filters food expenses, and calculates the total amount spent. It uses JS array methods such as map, filter, and reduce.
+
 ### What a callback function is
 A callback function is a function that is called inside another function. The callback function is passed as an argument to a function, and it is executed inside the body of that function.
 
