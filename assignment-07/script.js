@@ -1,3 +1,9 @@
+const INACTIVITY_TIMEOUT_MS = 15000;
+const INTERVAL = 1000;
+let inactivityTimeoutId;
+let countdownIntervalId;
+let remainingSeconds = 0;
+
 const items = [
   { id: "milk", name: "Milk", price: 3.5 },
   { id: "bread", name: "Bread", price: 2.0 },
@@ -12,6 +18,7 @@ const printBtn = document.getElementById("print-btn");
 const resetBtn = document.getElementById("reset-btn");
 const itemList = document.getElementById("item-list");
 const totalEl = document.getElementById("total-value");
+const countdownEl = document.getElementById("countdown");
 
 const receiptEl = document.getElementById("receipt-output");
 
@@ -118,11 +125,46 @@ const resetCart = () => {
   });
 };
 
+const formatTime = (secs) => {
+  // get minutes
+  const minutes = Math.floor(secs / 60);
+  // return just the remainder
+  const seconds = secs % 60;
+  // format the string
+  return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+};
+
+const resetInactivityTimers = () => {
+  console.log("START TIMER");
+  // check if timer exist
+  // if exist clear it
+  if (inactivityTimeoutId) {
+    clearTimeout(inactivityTimeoutId);
+  }
+  if (countdownIntervalId) {
+    clearInterval(countdownIntervalId);
+  }
+
+  inactivityTimeoutId = setTimeout(() => {
+    console.log("RESET");
+    clearInterval(countdownIntervalId);
+  }, INACTIVITY_TIMEOUT_MS);
+
+  countdownIntervalId = setInterval(() => {
+    console.log("INTERVAL");
+
+    remainingSeconds++;
+    countdownEl.textContent = remainingSeconds;
+    console.log(remainingSeconds);
+  }, INTERVAL);
+};
+
 const initializeApp = () => {
   buildForm();
   const { total, cartItems } = calculateTotal();
   renderTotal(total, cartItems);
   printReceipt(total, cartItems);
+  resetInactivityTimers();
 };
 
 initializeApp();
