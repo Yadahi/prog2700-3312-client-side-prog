@@ -82,6 +82,10 @@ const renderTotal = (total = 0, cartItems = []) => {
   totalEl.textContent = `$${total.toFixed(2)}`;
 };
 
+const renderZeroTotal = () => {
+  totalEl.textContent = "$0.00";
+};
+
 const formatDateTime = () => {
   const date = new Date();
   // I had to google how to correctly use Date and padStart
@@ -111,13 +115,17 @@ const printReceipt = (total = 0, cartItems = []) => {
     return;
   }
   // iterate over and create formatted string output
-  let receiptText = `Simple Grocery Store\n${"-".repeat(25)}`;
+  let receiptText = `Simple Grocery Store\n${"-".repeat(25)}\n${formatDateTime()}\n`;
   cartItems.forEach((item) => {
     const itemLine = `\n${item.name}\tx${item.quantity}\t$${item.total.toFixed(2)}`;
     receiptText += itemLine;
   });
   receiptText += `\n\n\nTOTAL:\t$${total.toFixed(2)}`;
   receiptEl.textContent = receiptText;
+};
+
+const clearReceipt = () => {
+  receiptEl.textContent = "";
 };
 
 const resetCart = () => {
@@ -138,7 +146,6 @@ const formatTime = (secs) => {
 };
 
 const resetInactivityTimers = () => {
-  console.log("START TIMER");
   // check if timer and interval exists
   // if exist clear it
   if (inactivityTimeoutId) {
@@ -151,7 +158,7 @@ const resetInactivityTimers = () => {
   inactivityTimeoutId = setTimeout(() => {
     console.log("RESET");
     resetCart();
-    renderTotal();
+    renderZeroTotal();
     receiptEl.textContent = "Cart reset due to inactivity.";
     clearInterval(countdownIntervalId);
     countdownEl.textContent = formatTime(0);
@@ -180,7 +187,6 @@ const initializeApp = () => {
   addInactivityListeners();
   const { total, cartItems } = calculateTotal();
   renderTotal(total, cartItems);
-  printReceipt(total, cartItems);
   resetInactivityTimers();
 };
 
@@ -201,10 +207,9 @@ printBtn.addEventListener("click", () => {
 });
 
 resetBtn.addEventListener("click", () => {
-  // renderTotal has default values and therefor can be used to reset total output
-  renderTotal();
+  renderZeroTotal();
   // printReceipt has defualt values and therefor can be used to reset receipt output
-  printReceipt();
+  clearReceipt();
   resetCart();
   resetInactivityTimers();
 });
