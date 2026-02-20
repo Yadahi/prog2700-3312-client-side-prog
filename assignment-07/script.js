@@ -2,7 +2,7 @@ const INACTIVITY_TIMEOUT_MS = 15000;
 const INTERVAL = 1000;
 let inactivityTimeoutId;
 let countdownIntervalId;
-let remainingSeconds = 0;
+let remainingSeconds = 15;
 
 const items = [
   { id: "milk", name: "Milk", price: 3.5 },
@@ -19,7 +19,6 @@ const resetBtn = document.getElementById("reset-btn");
 const itemList = document.getElementById("item-list");
 const totalEl = document.getElementById("total-value");
 const countdownEl = document.getElementById("countdown");
-
 const receiptEl = document.getElementById("receipt-output");
 
 const buildForm = () => {
@@ -46,6 +45,10 @@ const buildForm = () => {
     itemList.append(itemElement);
   });
 };
+
+const addInactivityListeners = () => {
+  
+}
 
 const calculateTotal = () => {
   let total = 0;
@@ -136,7 +139,7 @@ const formatTime = (secs) => {
 
 const resetInactivityTimers = () => {
   console.log("START TIMER");
-  // check if timer exist
+  // check if timer and interval exists
   // if exist clear it
   if (inactivityTimeoutId) {
     clearTimeout(inactivityTimeoutId);
@@ -147,15 +150,28 @@ const resetInactivityTimers = () => {
 
   inactivityTimeoutId = setTimeout(() => {
     console.log("RESET");
+    resetCart();
+    renderTotal();
+    receiptEl.textContent = "Cart reset due to inactivity.";
     clearInterval(countdownIntervalId);
+    countdownEl.textContent = formatTime(0);
   }, INACTIVITY_TIMEOUT_MS);
 
-  countdownIntervalId = setInterval(() => {
-    console.log("INTERVAL");
+  // setting 15 s everytime the function is called
+  remainingSeconds = 15;
+  // UI starts with 15
+  countdownEl.textContent = formatTime(remainingSeconds);
 
-    remainingSeconds++;
-    countdownEl.textContent = remainingSeconds;
-    console.log(remainingSeconds);
+  // countdown
+  countdownIntervalId = setInterval(() => {
+    remainingSeconds--;
+    // reset when hiting zero
+    if (remainingSeconds <= 0) {
+      remainingSeconds = 0;
+      clearInterval(countdownIntervalId);
+    }
+    // display countdown
+    countdownEl.textContent = formatTime(remainingSeconds);
   }, INTERVAL);
 };
 
@@ -173,12 +189,14 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
   const { total, cartItems } = calculateTotal();
   renderTotal(total, cartItems);
+  resetInactivityTimers();
 });
 
 printBtn.addEventListener("click", () => {
   const { total, cartItems } = calculateTotal();
   renderTotal(total, cartItems);
   printReceipt(total, cartItems);
+  resetInactivityTimers();
 });
 
 resetBtn.addEventListener("click", () => {
@@ -186,6 +204,6 @@ resetBtn.addEventListener("click", () => {
   renderTotal();
   // printReceipt has defualt values and therefor can be used to reset receipt output
   printReceipt();
-
   resetCart();
+  resetInactivityTimers();
 });
