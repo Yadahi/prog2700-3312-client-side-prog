@@ -47,8 +47,8 @@ const buildForm = () => {
 };
 
 const addInactivityListeners = () => {
-  
-}
+  itemList.addEventListener("input", resetInactivityTimers);
+};
 
 const calculateTotal = () => {
   let total = 0;
@@ -177,6 +177,7 @@ const resetInactivityTimers = () => {
 
 const initializeApp = () => {
   buildForm();
+  addInactivityListeners();
   const { total, cartItems } = calculateTotal();
   renderTotal(total, cartItems);
   printReceipt(total, cartItems);
