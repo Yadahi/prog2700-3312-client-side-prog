@@ -1,9 +1,11 @@
+// declare variables for timers
 const INACTIVITY_TIMEOUT_MS = 15000;
 const INTERVAL = 1000;
 let inactivityTimeoutId;
 let countdownIntervalId;
 let remainingSeconds = 15;
 
+// define items that will be use to create form items
 const items = [
   { id: "milk", name: "Milk", price: 3.5 },
   { id: "bread", name: "Bread", price: 2.0 },
@@ -13,6 +15,7 @@ const items = [
   { id: "chicken", name: "Chicken", price: 8.5 },
 ];
 
+// elements from DOM
 const form = document.getElementById("list-form");
 const printBtn = document.getElementById("print-btn");
 const resetBtn = document.getElementById("reset-btn");
@@ -21,6 +24,7 @@ const totalEl = document.getElementById("total-value");
 const countdownEl = document.getElementById("countdown");
 const receiptEl = document.getElementById("receipt-output");
 
+// builds the form based on items array
 const buildForm = () => {
   itemList.innerHTML = "";
   items.forEach((item) => {
@@ -46,10 +50,12 @@ const buildForm = () => {
   });
 };
 
+// add event listener that reset timer when input changes
 const addInactivityListeners = () => {
   itemList.addEventListener("input", resetInactivityTimers);
 };
 
+// caluclate total based on price and quantity
 const calculateTotal = () => {
   let total = 0;
   const cartItems = [];
@@ -82,10 +88,12 @@ const renderTotal = (total = 0, cartItems = []) => {
   totalEl.textContent = `$${total.toFixed(2)}`;
 };
 
+// helper function to reset total to zero
 const renderZeroTotal = () => {
   totalEl.textContent = "$0.00";
 };
 
+// helper function to formate date
 const formatDateTime = () => {
   const date = new Date();
   // I had to google how to correctly use Date and padStart
@@ -106,6 +114,7 @@ const formatDateTime = () => {
   return `${year}-${month}-${day} ${hh}:${minutes} ${ampm}`;
 };
 
+// print receipt
 const printReceipt = (total = 0, cartItems = []) => {
   // reset the output
   receiptEl.textContent = "";
@@ -124,6 +133,7 @@ const printReceipt = (total = 0, cartItems = []) => {
   receiptEl.textContent = receiptText;
 };
 
+// helper function
 const clearReceipt = () => {
   receiptEl.textContent = "";
 };
@@ -136,6 +146,7 @@ const resetCart = () => {
   });
 };
 
+// helper function
 const formatTime = (secs) => {
   // get minutes
   const minutes = Math.floor(secs / 60);
@@ -145,6 +156,7 @@ const formatTime = (secs) => {
   return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 };
 
+// function beyond the scope of the assignment
 const resetInactivityTimers = () => {
   // check if timer and interval exists
   // if exist clear it
@@ -182,6 +194,7 @@ const resetInactivityTimers = () => {
   }, INTERVAL);
 };
 
+// initialize the app
 const initializeApp = () => {
   buildForm();
   addInactivityListeners();
@@ -192,6 +205,7 @@ const initializeApp = () => {
 
 initializeApp();
 
+// event listeners for buttons
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const { total, cartItems } = calculateTotal();
