@@ -4,9 +4,7 @@
   margin: 0 auto;
   padding: 2rem 0;
   font-family:
-    "Segoe UI",
-    system-ui,
-    -apple-system,
+    Roboto,
     sans-serif;
   color: #2d3436;
 }
@@ -170,7 +168,3 @@
   min-height: 6rem;
 }
 
-/* Optional utility */
-.hidden {
-  display: none;
-}
