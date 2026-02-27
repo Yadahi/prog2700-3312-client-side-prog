@@ -11,20 +11,9 @@ const addNoteBtn = document.getElementById("add-note-btn");
 const removeNoteBtn = document.getElementById("remove-note-btn");
 const resetBtn = document.getElementById("reset-btn");
 const messageCardSection = document.getElementById("message-card-section");
+const messageText = document.getElementById("message-text");
 
-//Type a message
-//Select the card element
-//Change its text using textContent
-//Make the card visible if hidden
-
-//Display the message inside a card
-//Change the card color
-//Add a small note dynamically
-//Remove the note
-//Reset the card
-
-const init = () => {};
-
+// validate the input, when no input it will return undefined
 const getValidInput = (inputContent) => {
   const text = inputContent?.value;
   if (!text || text.trim() === "") {
@@ -34,42 +23,68 @@ const getValidInput = (inputContent) => {
 };
 
 const handleShowMessage = () => {
-  console.log("handleShowMessage");
   const input = getValidInput(messageInput);
+  // if input is undefined return
   if (!input) {
     return;
   }
-  messageCardSection.textContent = input;
-  messageCardSection.classList.add("show");
+
+  //Make the card visible if hidden
+  messageCardSection.style.display = "block";
+  //Change its text using textContent
+  messageText.textContent = input;
 };
 
+// Change the card color
 const handleChangeColor = () => {
-  console.log("handleChangeColor");
+  messageCardSection.style.backgroundColor = "#FDECEF";
+  messageCardSection.style.color = "red";
+  messageCardSection.style.borderColor = "red";
 };
 
+// Display the message inside a card
 const handleAddNote = () => {
-  console.log("handleAddNote");
+  // check if note exist
+  const existingNote = document.getElementById("message-note");
+  if (existingNote) {
+    return;
+  }
+  // Add a small note dynamically
+  const note = document.createElement("p");
+  note.id = "message-note";
+  note.textContent = "This is a note.";
+  // use different color when bg applied
+  messageCardSection.style.backgroundColor
+    ? (note.style.color = "purple")
+    : (note.style.color = "red");
+  messageCardSection.appendChild(note);
 };
 
+// Remove the note
 const handleRemoveNote = () => {
-  console.log("handleRemoveNote");
+  // check if note exist
+  const note = document.getElementById("message-note");
+  if (note) {
+    note.remove();
+  }
 };
 
+// Reset the card
 const handleReset = () => {
-  console.log("handleReset");
   // remove the card
-  messageCardSection.classList.remove("show");
+  messageText.textContent = "";
+  messageCardSection.style.display = "none";
   // reset the input value
   messageInput.value = "";
-  // reset text color
-
-  // reset background color
-
+  // reset style - bg color, color, and border color
+  messageCardSection.style.backgroundColor = "";
+  messageCardSection.style.color = "";
+  messageCardSection.style.borderColor = "";
   // remove note if it exist
+  handleRemoveNote();
 };
 
-init();
-
+// attaching event listener on buttons
 showMessageBtn.addEventListener("click", handleShowMessage);
 changeColorBtn.addEventListener("click", handleChangeColor);
 addNoteBtn.addEventListener("click", handleAddNote);
