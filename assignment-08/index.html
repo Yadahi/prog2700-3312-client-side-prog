@@ -18,7 +18,7 @@
       <h1>Message App</h1>
       <label for="message">
         <textarea
-          id="message"
+          id="message-input"
           class="message-input"
           rows="5"
           cols="30"
@@ -26,13 +26,21 @@
         ></textarea>
       </label>
       <div class="button-group">
-        <button class="show-message-btn">Show Message</button>
-        <button class="change-color-btn">Change Card Color</button>
-        <button class="add-note-btn">Add Note</button>
-        <button class="remove-note-btn">Remove Note</button>
-        <button class="reset-btn">Reset</button>
+        <button class="show-message-btn" id="show-message-btn">
+          Show Message
+        </button>
+        <button class="change-color-btn" id="change-color-btn">
+          Change Card Color
+        </button>
+        <button class="add-note-btn" id="add-note-btn">Add Note</button>
+        <button class="remove-note-btn" id="remove-note-btn">
+          Remove Note
+        </button>
+        <button class="reset-btn" id="reset-btn">Reset</button>
       </div>
-      <div class="message-card-section">Message card will be rendered here</div>
+      <div class="message-card-section" id="message-card-section">
+        Message card will be rendered here
+      </div>
     </div>
   </body>
 </html>
