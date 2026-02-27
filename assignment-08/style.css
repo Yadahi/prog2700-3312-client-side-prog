@@ -1,0 +1,89 @@
+:root {
+  --border-color: #ddd;
+  --message-btn: #3b82f6;
+  --change-btn: #e5e7eb;
+  --add-note-btn: #22a67a;
+  --remove-btn: #e04555;
+  --reset-btn: white;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+label {
+  display: block;
+  width: 100%;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.message-app {
+  max-width: 480px;
+  margin: 60px auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.message-input {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.button-group {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.show-message-btn,
+.change-color-btn,
+.add-note-btn,
+.remove-note-btn,
+.reset-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  font-weight: 600;
+}
+
+.show-message-btn {
+  background-color: var(--message-btn);
+  color: white;
+}
+.change-color-btn {
+  background-color: var(--change-btn);
+}
+.add-note-btn {
+  background-color: var(--add-note-btn);
+  color: white;
+}
+.remove-note-btn {
+  background-color: var(--remove-btn);
+  color: white;
+}
+.reset-btn {
+  background-color: var(--reset-btn);
+  border: 1px solid var(--border-color);
+}
+.message-card-section {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+}
