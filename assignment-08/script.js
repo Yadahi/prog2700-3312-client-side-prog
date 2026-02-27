@@ -23,8 +23,24 @@ const messageCardSection = document.getElementById("message-card-section");
 //Remove the note
 //Reset the card
 
+const init = () => {};
+
+const getValidInput = (inputContent) => {
+  const text = inputContent?.value;
+  if (!text || text.trim() === "") {
+    return;
+  }
+  return text.trim();
+};
+
 const handleShowMessage = () => {
   console.log("handleShowMessage");
+  const input = getValidInput(messageInput);
+  if (!input) {
+    return;
+  }
+  messageCardSection.textContent = input;
+  messageCardSection.classList.add("show");
 };
 
 const handleChangeColor = () => {
@@ -41,7 +57,18 @@ const handleRemoveNote = () => {
 
 const handleReset = () => {
   console.log("handleReset");
+  // remove the card
+  messageCardSection.classList.remove("show");
+  // reset the input value
+  messageInput.value = "";
+  // reset text color
+
+  // reset background color
+
+  // remove note if it exist
 };
+
+init();
 
 showMessageBtn.addEventListener("click", handleShowMessage);
 changeColorBtn.addEventListener("click", handleChangeColor);
