@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Green Basket Grocery</title>
+    <!-- link the external CSS file -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <!-- call startTimer() when the page loads -->
+  <body onload="startTimer()">
+    <!-- semantic html tag. it is used to create a header section -->
+    <header class="header">
+      <!-- this section has two main part the brand are and badge -->
+      <div class="header-inner">
+        <div class="brand">
+          <div class="logo">GB</div>
+          <div>
+            <h1>Green Basket Grocery</h1>
+            <p class="tagline">Fresh picks, simple checkout</p>
+          </div>
+        </div>
+        <div class="badge">Demo Store</div>
+      </div>
+    </header>
+
+    <!-- semantic main tag. contains the main content of the page -->
+    <main class="container">
+      <!-- the main content is split itno two sections; the shop items and the receipt -->
+      <section class="card">
+        <h2>Shop Items</h2>
+        <p class="hint">
+          Enter quantities, then calculate or print your receipt. Inactivity
+          resets after 15 seconds.
+        </p>
+        <!-- container for the shop items. it use a grid layout here -->
+        <div class="grid">
+          <!-- one product card. shows the item name, price, and a quantity input -->
+          <div class="item">
+            <div class="item-info">
+              <div class="item-name">Milk</div>
+              <div class="item-price">$3.50</div>
+            </div>
+            <!-- input field that has:
+                  - type number - shows a numeric input
+                  - min 0 prevents negative values
+                  - value 0 sets the default quantity to 0
+                  - oninput startTimer() reset the timer whenever the user changes the input 
+            -->
+            <input
+              type="number"
+              id="milk"
+              value="0"
+              min="0"
+              oninput="startTimer()"
+            />
+          </div>
+
+          <div class="item">
+            <div class="item-info">
+              <div class="item-name">Bread</div>
+              <div class="item-price">$2.25</div>
+            </div>
+            <input
+              type="number"
+              id="bread"
+              value="0"
+              min="0"
+              oninput="startTimer()"
+            />
+          </div>
+
+          <div class="item">
+            <div class="item-info">
+              <div class="item-name">Eggs</div>
+              <div class="item-price">$4.10</div>
+            </div>
+            <input
+              type="number"
+              id="eggs"
+              value="0"
+              min="0"
+              oninput="startTimer()"
+            />
+          </div>
+
+          <div class="item">
+            <div class="item-info">
+              <div class="item-name">Rice</div>
+              <div class="item-price">$6.00</div>
+            </div>
+            <input
+              type="number"
+              id="rice"
+              value="0"
+              min="0"
+              oninput="startTimer()"
+            />
+          </div>
+
+          <div class="item">
+            <div class="item-info">
+              <div class="item-name">Apples</div>
+              <div class="item-price">$2.80</div>
+            </div>
+            <input
+              type="number"
+              id="apples"
+              value="0"
+              min="0"
+              oninput="startTimer()"
+            />
+          </div>
+
+          <div class="item">
+            <div class="item-info">
+              <div class="item-name">Chicken</div>
+              <div class="item-price">$9.50</div>
+            </div>
+            <input
+              type="number"
+              id="chicken"
+              value="0"
+              min="0"
+              oninput="startTimer()"
+            />
+          </div>
+        </div>
+
+        <!-- section holds 3 buttons. 
+          - each button uses an onclick handler to run js function
+          - each onclick function has a different purpose 
+          - the resetCart() accept a parameter  
+        -->
+        <div class="actions">
+          <button class="btn primary" onclick="calculateTotal()">
+            Calculate Total
+          </button>
+          <button class="btn" onclick="printReceipt()">Print Receipt</button>
+          <button class="btn danger" onclick="resetCart('Cart reset.')">
+            Reset Cart
+          </button>
+
+          <div class="total-box">
+            <span class="total-label">Total</span>
+            <span id="total" class="total-value">$0.00</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="receipt-head">
+          <h2>Receipt</h2>
+          <span class="small-note"
+            >Tip: do nothing for 15 seconds to see the inactivity reset
+            message.</span
+          >
+        </div>
+        <pre id="receipt" class="receipt">Ready.</pre>
+      </section>
+    </main>
+
+    <!-- sematinc html tag footer -->
+    <footer class="footer">
+      <div class="container footer-inner">
+        <span>Green Basket Grocery, Halifax, NS</span>
+        <span class="muted">Training demo</span>
+      </div>
+    </footer>
+    <!-- load the external JS file. placing it at the end of body ensure the html is loaded before the script runs
+          alternatively, the script could be placed in the head with defer attribute
+    -->
+    <script src="script.js"></script>
+  </body>
+</html>
