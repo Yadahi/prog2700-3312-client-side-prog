@@ -27,7 +27,7 @@ I added two new features that are not in the tutorial video:
 There is a button at the top of the chat. When you click it, all messages are deleted. The chat starts fresh.
 
 **2. Save Chat History**
-The chat is saved in the browser. If you close the page and come back, your old messages are still there. This uses something called "local storage."
+The chat is saved in the browser. If you close the page and come back, your old messages are still there. This uses local storage.
 
 ---
 
