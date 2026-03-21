@@ -1,0 +1,3 @@
+const CONFIG = {
+  API_URL: "your_api_url_here",
+};
